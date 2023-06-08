@@ -1,22 +1,20 @@
 package com.mcbalsa.directory.Service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import com.mcbalsa.directory.Repository.PersonRepository;
+import com.mcbalsa.directory.dto.PersonRequestDTO;
+import com.mcbalsa.directory.dto.PersonResponseDTO;
 import com.mcbalsa.directory.models.Person;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
 @Service
-@RequiredArgsConstructor
-@Slf4j
-public class PersonService {
+public interface PersonService {
+    Person createNew(PersonRequestDTO personRequestDTO);
+    
+    Person updatePerson(PersonResponseDTO personRespDto);
 
-    private PersonRepository personRepository;
+    List<PersonResponseDTO> getAllPeople();
 
-    public void insertPerson(Person person) {
-        personRepository.insert(person);
-        log.info("Person {} is saved");
-    }
+    Boolean deleteById(String id);
 }
